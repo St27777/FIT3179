@@ -1,0 +1,143 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "params": [
+        {
+          "name": "State_Selection",
+          "bind": {
+            "input": "select",
+            "options": [
+              null,
+              "Johor",
+              "Kedah",
+              "Kelantan",
+              "Kuala Lumpur",
+              "Labuan",
+              "Melaka",
+              "Negeri Sembilan",
+              "Pahang",
+              "Perak",
+              "Perlis",
+              "Penang",
+              "Putrajaya",
+              "Sabah",
+              "Sarawak",
+              "Selangor",
+              "Terengganu"
+            ],
+            "labels": [
+              "Show All",
+              "Johor",
+              "Kedah",
+              "Kelantan",
+              "Kuala Lumpur",
+              "Labuan",
+              "Melaka",
+              "Negeri Sembilan",
+              "Pahang",
+              "Perak",
+              "Perlis",
+              "Penang",
+              "Putrajaya",
+              "Sabah",
+              "Sarawak",
+              "Selangor",
+              "Terengganu"
+            ],
+            "name": "State Selection:"
+          }
+        }
+      ],
+  "vconcat": [
+    {
+      "width": 800,
+      "height": 450,
+      "title": "Population for each State in Malaysia (2023)",
+      "projection": {"type": "equalEarth"},
+      "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/St27777/FIT3179/main/malaysia-states.topojson",
+            "format": {"type": "topojson", "feature": "states"}
+          },
+          "transform": [
+            {
+              "lookup": "properties.Name",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/St27777/FIT3179/main/Malaysia_Population_with_Coordinates.csv"
+                },
+                "key": "Name",
+                "fields": ["Population"]
+              }
+            },
+            {
+              "lookup": "properties.Name",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/St27777/FIT3179/main/Housing.csv"
+                },
+                "key": "Name",
+                "fields": ["HousingTransaction"]
+              }
+            },
+            {"filter": "State_Selection == null || datum.properties.Name == State_Selection"}
+          ],
+          "mark": {"type": "geoshape"},
+          "encoding": {
+            "color": {
+              "field": "Population",
+              "type": "quantitative",
+              "scale": {"type": "log"},
+              "title": "Population (2023)"
+            },
+            "tooltip": [
+              {"field": "properties.Name", "type": "nominal", "title": "State"},
+              {"field": "Population", "type": "quantitative", "title": "Population"},
+              {
+                "field": "HousingTransaction",
+                "type": "quantitative",
+                "title": "Housing Transaction"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/St27777/FIT3179/main/Malaysia_Population_with_Coordinates.csv"
+          },
+          "transform": [{"filter": "State_Selection == null || datum.Name == State_Selection"}],
+          "mark": {
+            "type": "text",
+            "fontSize": 10,
+            "fontWeight": "bold",
+            "color": "black"
+          },
+          "encoding": {
+            "longitude": {"field": "Longitude", "type": "quantitative"},
+            "latitude": {"field": "Latitude", "type": "quantitative"},
+            "text": {"field": "Name", "type": "nominal"}
+          }
+        }
+      ]
+    },
+    {
+      "width": 800,
+      "height": 400,
+      "title": "Housing Transaction for each State (2023)",
+      "data": {
+        "url": "https://raw.githubusercontent.com/St27777/FIT3179/main/Housing.csv"
+      },
+      "transform": [{"filter": "State_Selection == null || datum.Name == State_Selection"}],
+      "mark": "bar",
+      "encoding": {
+        "x": {"field": "Name", "type": "nominal", "title": "State"},
+        "y": {"field": "HousingTransaction", "type": "quantitative", "title": "Housing Transaction"},
+        "color": {"field": "HousingTransaction", "type": "quantitative", "scale": {"type": "log"}},
+        "tooltip": [
+          {"field": "HousingTransaction", "type": "quantitative", "title": "Housing Transaction"}
+        ]
+      }
+    }
+  ],
+  "config": {}
+}
