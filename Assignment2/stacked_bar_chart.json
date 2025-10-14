@@ -1,0 +1,42 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "background": "#d1dbe3",
+  "description": "I have used ChatGPT to understand the uses of fold where it combine the data into two rows for example making Johor with two data (Housing Transaction and Mean Salary) and apply it on my owns.",
+  "width": 100,
+  "data": {
+    "url": "https://raw.githubusercontent.com/St27777/FIT3179/main/Population_Housing_Salary.csv"
+  },
+  "transform": [
+    {
+      "fold": ["HousingTransaction", "Mean Salary"],
+      "as": ["Category", "Value"]
+    }
+  ],
+  "mark": {"type": "bar"},
+  "encoding": {
+    "y": {
+      "field": "Name",
+      "type": "nominal",
+      "title": "States"
+    },
+    "x": {
+      "aggregate": "sum",
+      "field": "Value",
+      "type": "quantitative",
+      "title": "Value"
+    },
+    "color": {
+      "field": "Category",
+      "type": "nominal",
+      "title": "Category",
+      "scale": {
+        "domain": ["HousingTransaction","Mean Salary"],
+        "range": ["lightblue","red"]
+      }
+    },
+    "tooltip": [
+      {"field": "Category", "type": "nominal"},
+      {"field": "Value", "type": "quantitative"}
+    ]
+  }
+}

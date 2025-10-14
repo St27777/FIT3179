@@ -1,0 +1,40 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "background": "#d1dbe3",
+  "data": {"url": "https://raw.githubusercontent.com/St27777/FIT3179/main/Population_Housing.csv"},
+  "layer": [
+    {
+      "mark": "point",
+      "encoding": {
+        "x": {"field": "Population", "type": "quantitative", "title": "Population"},
+        "y": {"field": "HousingTransaction", "type": "quantitative", "title": "Housing Transaction"},
+        "tooltip": [
+          {"field": "Name", "type": "nominal", "title": "State"},
+          {"field": "Population", "type": "quantitative", "title": "Population"},
+          {"field": "HousingTransaction", "type": "quantitative", "title": "Housing Transactions"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "line", "color": "red"},
+      "transform": [
+        {
+          "regression": "HousingTransaction",
+          "on": "Population"
+        },
+        {
+          "calculate": "0.3656",
+          "as": "R Squared"
+        }
+      ],
+      "encoding": {
+        "x": {"field": "Population", "type": "quantitative"},
+        "y": {"field": "HousingTransaction", "type": "quantitative"}
+      }
+    },
+    {
+      "mark":{"type":"text","align":"right"},
+      "encoding":{"text":{"value":"R² = 0.365584789"}}
+    }
+  ]
+}
