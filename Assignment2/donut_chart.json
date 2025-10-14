@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "background": "#d1dbe3",
+  "width":400,
+  "height":400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/St27777/FIT3179/main/Population_Housing_Salary.csv"
+  },
+  "title": {"text":"Population for each States (2023)","fontSize": 16, "fontWeight":"bold","font":"Georgia"},
+  "layer": [
+    {
+  "mark": {"type": "arc", "innerRadius": 50},
+  "encoding": {
+    "theta": {"field": "Population", "type": "quantitative"},
+    "color": {"field": "Name", "type": "nominal","scale":{"scheme":"category20"}},
+    "tooltip": [
+    {"field": "Name", "type": "nominal","title":"State"},
+    {"field": "Population", "type": "quantitative","title":"Population"}
+  ]
+}
+},
+{
+      "mark": {
+        "type": "text",
+        "text": "Total Population",
+        "fontSize": 10,
+        "align": "center",
+        "baseline": "middle"
+      }
+    }
+  ]
+}

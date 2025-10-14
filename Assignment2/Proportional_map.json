@@ -1,0 +1,113 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "params": [
+    {
+      "name": "State_Selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Johor",
+          "Kedah",
+          "Kelantan",
+          "Kuala Lumpur",
+          "Melaka",
+          "Negeri Sembilan",
+          "Pahang",
+          "Perak",
+          "Perlis",
+          "Penang",
+          "Putrajaya",
+          "Sabah",
+          "Sarawak",
+          "Selangor",
+          "Terengganu"
+        ],
+        "labels": [
+          "Show All",
+          "Johor",
+          "Kedah",
+          "Kelantan",
+          "Kuala Lumpur",
+          "Melaka",
+          "Negeri Sembilan",
+          "Pahang",
+          "Perak",
+          "Perlis",
+          "Penang",
+          "Putrajaya",
+          "Sabah",
+          "Sarawak",
+          "Selangor",
+          "Terengganu"
+        ],
+        "name": "State Selection:"
+      }
+    }
+  ],
+      "background": "#d1dbe3",
+      "width": 1000,
+      "height": 500,
+      "title": {"text":"Population and Housing Transaction by State (2023)","fontSize": 16, "fontWeight":"bold","font":"Georgia"},
+      "projection": {"type": "equalEarth"},
+      "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/St27777/FIT3179/main/malaysia-states.topojson",
+            "format": {"type": "topojson", "feature": "states"}
+          },
+          "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/St27777/FIT3179/main/Population_Housing.csv"
+          },
+          "transform": [
+            {"filter": "State_Selection == null || datum.Name == State_Selection"}
+          ],
+          "mark": {"type": "circle", "tooltip": {"content": "data"}},
+          "encoding": {
+            "longitude": {"field": "Longitude", "type": "quantitative"},
+            "latitude": {"field": "Latitude", "type": "quantitative"},
+            "size": {
+              "field": "Population",
+              "type": "quantitative",
+              "title": "Population",
+              "scale": {"range": [100, 3000]}
+            },
+            "color": {
+              "field": "HousingTransaction",
+              "type": "quantitative",
+              "title": "Housing Transactions",
+              "scale": {"scheme": "reds"}
+            },
+            "tooltip": [
+              {"field": "Name", "type": "nominal", "title": "State"},
+              {"field": "Population", "type": "quantitative", "title": "Population"},
+              {
+                "field": "HousingTransaction",
+                "type": "quantitative",
+                "title": "Housing Transactions"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/St27777/FIT3179/main/Population_Housing.csv"
+          },
+          "transform": [{"filter": "State_Selection == null || datum.Name == State_Selection"}],
+          "mark": {
+            "type": "text",
+            "fontSize": 10,
+            "fontWeight": "bold",
+            "color": "black"
+          },
+          "encoding": {
+            "longitude": {"field": "Longitude", "type": "quantitative"},
+            "latitude": {"field": "Latitude", "type": "quantitative"},
+            "text": {"field": "Name", "type": "nominal"}
+          }
+        }
+      ]
+    }

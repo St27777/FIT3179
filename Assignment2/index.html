@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+    <title>33608741_FIT3179_Data Visualisation 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fondamento:ital@0;1&display=swap" rel="stylesheet">
+
+    <link rel = "stylesheet" href = "style.css">
+</head>
+<body>
+    <h1>Overview of Population, Housing Market Trends, and Average Income in Malaysia (2023)</h1>
+    <hr>
+    <div class = "outer">
+        <div id = "proportional_map"></div>
+    </div>
+    <div class = "outer2">
+    <div class = "container2">
+    <div id = "scatterplot"></div>
+    <p>
+        The scatterplot visualises the relationship between populations and housing transactions for each states in Malaysia. The calculated <b>R Squared value is 0.365584789</b> 
+        (calculated in Excel) where it shows a <b>weak relationship between housing transactions and population</b> for each states in Malaysia while only 36.6% of the variance in 
+        housing transactions can be explained by the population. We can assume that the relationship between this 2 factors may due to other factors. Each point represents a single state,
+        with population and housing markets.
+    </p>
+    </div>
+    </div>
+    <div class = "outer2">
+    <div class = "container2">
+        <div id = "stacked_bar_chart"></div>
+        <p>The stacked bar chart depicts that the relationship between average salaries and houing markets across different states in Malaysia.
+            With <b>high income states, Kuala Lumpur</b> but have lower housing transactions probably due to market saturation or etc. 
+            and <b>mid-income states like Johor and Perak</b> remain vibrant housing markets and ongoing development projects.
+        </p>
+    </div>
+    </div>
+    <div class = "outer2">
+    <div class = "container2">
+        <div id = "donut_chart"></div>
+        <p>The donut chart visualises the population share of each states in Malaysia, which shows an intuitive view of how people are distributed across Malaysia. From the chart,
+            <b>Selangor</b> clearly dominates the chart as the Malaysia's <b>most populous state</b> due to the extensive urbanisation, job opportunities and infrastructure
+            and <b>Putrajaya</b> has the lowest population as it mainly to host government ministries.
+        </p>
+    </div>
+    </div>
+
+    <script src = "DV2.js"></script>
+
+    <div class="metadata">
+        Author: Stewart Tang Jia Heng<br>
+        Data Sources:<br>
+        <a href="https://storage.dosm.gov.my/labour/salaries_wages_2023.pdf" target="_blank">DOSM Salaries & Wages 2023</a><br>
+        <a href="https://www.citypopulation.de/en/malaysia/cities/" target="_blank">City Population Malaysia</a><br>
+        <a href="https://www.latlong.net/category/states-133-14.html" target="_blank">LatLong Malaysia States</a><br>
+        <a href="https://napic2.jpph.gov.my/en/data-visualization?category=15&id=50" target="_blank">NAPIC Data Visualization</a><br>
+        Created: 13/10/2025
+        </div>
+
+</body>
+

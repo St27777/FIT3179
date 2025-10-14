@@ -1,0 +1,66 @@
+h1 {
+    font-family: "Fondamento";
+    text-align: center;
+}
+
+p {
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    max-width: 300px;
+}
+
+html, body {
+    background-color:#dae2e8;
+    margin: 0;  
+    padding: 0;
+}
+
+#proportional_map {
+    border: 3px solid black;     
+    border-radius: 20px;         
+    padding: 5px;            
+}
+
+
+.outer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.outer2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;  
+    margin-top: 20px;
+}
+
+.container {
+    max-width: 250px;
+    background: #d1dbe3;
+    padding: 30px;
+    border-radius: 20px;
+    border-left: 4px solid black;
+    margin-top: 5px;
+    margin-left: 25px;
+}
+
+.container2 {
+    max-width: 800px;
+    background: #d1dbe3;
+    padding: 30px;
+    border-radius: 20px;
+    border-left: 4px solid black;
+    margin-top: 20px;
+    margin-left: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.metadata {
+      text-align: left;
+      padding: 10px;
+      font-size: 14px;
+}

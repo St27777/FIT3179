@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "background": "#d1dbe3",
+  "width":400,
+  "height":400,
+  "description": "I have used ChatGPT to understand the uses of fold where it combine the data into two rows for example making Johor with two data (Housing Transaction and Mean Salary) and apply it on my owns.",
+  "title": {"text":"Comparison on Average Salary and Housing Transactions","fontSize": 16, "fontWeight":"bold", "font":"Georgia"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/St27777/FIT3179/main/Population_Housing_Salary.csv"
+  },
+  "transform": [
+    {
+      "fold": ["HousingTransaction", "Mean Salary"],
+      "as": ["Category", "Value"]
+    }
+  ],
+  "mark": {"type": "bar"},
+  "encoding": {
+    "x": {
+      "field": "Name",
+      "type": "nominal",
+      "title": "States"
+    },
+    "y": {
+      "aggregate": "sum",
+      "field": "Value",
+      "type": "quantitative",
+      "title": "Value"
+    },
+    "color": {
+      "field": "Category",
+      "type": "nominal",
+      "title": "Category",
+      "scale": {
+        "domain": ["HousingTransaction","Mean Salary"],
+        "range": ["#49a3ed","red"]
+      }
+    },
+    "tooltip": [
+      {"field": "Category", "type": "nominal"},
+      {"field": "Value", "type": "quantitative"}
+    ]
+  }
+}
